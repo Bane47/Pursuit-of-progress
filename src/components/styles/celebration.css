@@ -1,0 +1,139 @@
+* {
+    font-family: 'Roboto', sans-serif;
+  }
+  
+  .modal-dialog {
+      background-color: #fff;
+  }
+  
+  .modal-title {
+    text-align: center;
+  }
+  
+  .modal-subtitle {
+    text-align: center;
+  }
+  
+  .modal-subtitle.sub1 {
+    margin-top: 20px;
+  }
+  
+  .modal-subtitle.sub2 {
+    margin-bottom: 0px;
+  }
+  
+  /* .modal-body {
+    // text-align: center;
+  } */
+  
+  .modal-content {
+      background: none;
+  }
+  
+  .anim_container {
+      width: 170px;
+      height: 165px;
+      margin: 0 0 0 40px;
+      float: left;
+      text-align: center;
+  }
+  
+  #myCanvas {
+      margin-left: -66px;
+  }
+  
+  .separator {
+    border-color: #000;
+    width: 80%;
+  }
+  
+  .btn-goal {
+    padding: 10px 30px;
+    font-size: 20px;
+    border-radius: 0;
+    float: right;
+    background-color: #0bc772;
+    color: #fff;
+    margin-top: 25px;
+  }
+  
+  .toto {
+      width: 160px;
+      height: 160px;
+      border: 10px solid #E0DEDE;
+      border-radius: 50%;
+      margin: -170px auto 0;
+  }
+  
+  #count {
+      font-size: 40px;
+      margin-top: -105px;
+      margin-bottom: 70px;
+  }
+  
+  .tata {
+      font-size: 100px;
+      margin-top: -145px;
+      display: none;
+  }
+  
+  #drawing_canvas {
+      position: absolute;
+      margin: auto;
+      width: 1100px;
+      height: 700px;
+      top: -120px;
+      bottom: 0;
+      left: -320px;
+      right: 0;
+      z-index : -1;
+  }
+  
+  #confetti{
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    z-index: -1;
+  }
+  
+  .modal-content{
+    overflow: hidden;
+  }
+  
+  .modal-footer-text {
+    float: left;
+  }
+  
+  .next-level {
+    font-size: 16px;
+  }
+  
+  /*--------------------------------
+    Reset
+  --------------------------------*/
+  
+  .modal.fade.in {
+      display: block;
+  }
+  
+  .modal-header, .modal-body, .modal-footer {
+    border:0;
+  }
+  
+  .modal-header {
+    padding: 15px 15px 0;
+  }
+  
+  .modal-footer {
+      padding: 15px;
+      margin-top: 30px;
+      text-align: left;
+      clear: both;
+      background-color: #F5F5F5;
+  }
+  
+  .h1, .h2, .h3, h1, h2, h3 {
+    margin: 10px 0;
+  }

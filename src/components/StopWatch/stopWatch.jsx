@@ -1,55 +1,76 @@
 import React, { useState, useEffect } from 'react';
-import '../styles/stopwatch.css'
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
+import '../styles/stopwatch.css';
+
 function StopWatch() {
   const [hours, setHours] = useState(0);
   const [minutes, setMinutes] = useState(0);
-  const [seconds, setSeconds] = useState(5);
+  const [seconds, setSeconds] = useState(3);
   const [running, setRunning] = useState(false);
+  const [countdownCompleted, setCountdownCompleted] = useState(false);
+
+  const history = useNavigate(); // Initialize useNavigate
 
   useEffect(() => {
     let interval;
 
-   
-  if (running && (hours > 0 || minutes > 0 || seconds > 0)) {
-    interval = setInterval(() => {
-      if (seconds === 0) {
-        if (minutes === 0) {
-          if (hours === 0) {
-            clearInterval(interval); // Stop the interval
-            setRunning(false);
-            // Set a timeout to show the alert after 5 seconds
-            setTimeout(() => {
-              alert('Countdown completed!');
-            }, 5000);
+    if (running && (hours > 0 || minutes > 0 || seconds >= 0)) {
+      console.log(running,hours,minutes,seconds)
+      interval = setInterval(() => {
+        if (seconds === 0) {
+          if (minutes === 0) {
+            if (hours === 0) {
+              clearInterval(interval); // Stop the interval
+              setRunning(false);
+              setCountdownCompleted(true); // Countdown has completed
+            } else {
+              setHours((prevHours) => prevHours - 1);
+              setMinutes(59);
+              setSeconds(59);
+            }
           } else {
-            setHours((prevHours) => prevHours - 1);
-            setMinutes(59);
+            setMinutes((prevMinutes) => prevMinutes - 1);
             setSeconds(59);
           }
         } else {
-          setMinutes((prevMinutes) => prevMinutes - 1);
-          setSeconds(59);
+          setSeconds((prevSeconds) => prevSeconds - 1);
         }
-      } else {
-        setSeconds((prevSeconds) => prevSeconds - 1);
-      }
-    }, 1000);
-  }
+      }, 1000);
+    }
 
-  return () => clearInterval(interval);
-}, [running, hours, minutes, seconds]);
+    // Clear the interval when running becomes false
+    if (!running) {
+      clearInterval(interval);
+    }
 
+    // Cleanup function when the component is unmounted
+    return () => clearInterval(interval);
+  }, [running, hours, minutes, seconds]);
 
   const startTimer = () => {
     setRunning((prevRunning) => !prevRunning);
   };
 
+  // Function to reset the countdown and clear the completion state
   const resetTimer = () => {
     setRunning(false);
-    setHours(6);
+    setCountdownCompleted(false);
+    setHours(0);
     setMinutes(0);
-    setSeconds(0);
+    setSeconds(3);
   };
+
+  // Function to navigate to the celebration page
+  const navigateToCelebration = () => {
+    history('/Celebration'); // Redirect to the celebration page
+  };
+
+  // Redirect to the celebration page when countdown is completed
+  useEffect(() => {
+    if (countdownCompleted) {
+      navigateToCelebration();
+    }
+  }, [countdownCompleted]);
 
   return (
     <div className=''>
@@ -60,7 +81,9 @@ function StopWatch() {
         <button className="btn btn-primary" onClick={startTimer}>
           {running ? 'Pause' : 'Start'}
         </button>
-        
+        <button className="btn btn-secondary" onClick={resetTimer}>
+          Reset
+        </button>
       </div>
     </div>
   );

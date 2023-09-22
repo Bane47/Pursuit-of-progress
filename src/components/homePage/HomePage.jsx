@@ -19,6 +19,7 @@ const HomePage = () => {
                         <h3 className='mb-4'>Streak Day: 7</h3>
                         <div className='btn-main'>
                         <Link to='/stopwatch'><Button label="Power Up!" raised /></Link></div>
+
                     </div></div>
                     
             </div>
